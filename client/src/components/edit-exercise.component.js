@@ -32,13 +32,14 @@ export default class EditExercise extends Component {
       .catch(err => console.log(err))
 
     axios.get('https://list-app-mern.herokuapp.com/users/')
-    .then(res => {
-      if(res.data.length > 0) {
-        this.setState({
-          users: res.data.map(user => user.username)
-        })
-      }
-    })
+      .then(res => {
+        if(res.data.length > 0) {
+          this.setState({
+            users: res.data.map(user => user.username)
+          })
+        }
+      })
+      .catch(err => console.log(err))
   }
 
   onChangeUsername = (e) => {
@@ -75,8 +76,9 @@ export default class EditExercise extends Component {
     }
     console.log(exercise)
 
-    axios.post('https://list-app-mern.herokuapp.com/update/'+this.props.match.params.id, exercise)
-    .then(res => console.log(res.data))
+    axios.post('https://list-app-mern.herokuapp.com/exercises/update/' + this.props.match.params.id, exercise)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
 
     window.location = '/'
   }

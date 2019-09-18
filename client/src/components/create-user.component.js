@@ -29,6 +29,7 @@ export default class CreateUser extends Component {
 
     axios.post('https://list-app-mern.herokuapp.com/users/add', user)
     .then(res => console.log(res.data))
+    .catch(err => console.log(err))
 
     this.setState({
       username: ''

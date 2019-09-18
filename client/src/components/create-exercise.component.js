@@ -21,14 +21,15 @@ export default class CreateExercise extends Component {
 
   componentDidMount() {
     axios.get('https://list-app-mern.herokuapp.com/users/')
-    .then(res => {
-      if(res.data.length > 0) {
-        this.setState({
-          users: res.data.map(user => user.username),
-          username: res.data[0].username
-        })
-      }
-    })
+      .then(res => {
+        if(res.data.length > 0) {
+          this.setState({
+            users: res.data.map(user => user.username),
+            username: res.data[0].username
+          })
+        }
+      })
+      .catch(err => console.log(err))
   }
 
   onChangeUsername = (e) => {
@@ -56,7 +57,7 @@ export default class CreateExercise extends Component {
   }
 
   onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const exercise = {
       username: this.state.username,
       description: this.state.description,
@@ -65,8 +66,9 @@ export default class CreateExercise extends Component {
     }
     console.log(exercise)
 
-    axios.post('https://list-app-mern.herokuapp.com/add', exercise)
-    .then(res => console.log(res.data))
+    axios.post('https://list-app-mern.herokuapp.com/exercises/add', exercise)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
 
     window.location = '/'
   }
