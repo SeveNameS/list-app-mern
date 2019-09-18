@@ -20,7 +20,7 @@ export default class CreateExercise extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://mern-stack-app-b.herokuapp.com/users/')
+    axios.get('http://localhost:8080/users/')
     .then(res => {
       if(res.data.length > 0) {
         this.setState({
@@ -65,7 +65,7 @@ export default class CreateExercise extends Component {
     }
     console.log(exercise)
 
-    axios.post('https://mern-stack-app-b.herokuapp.com/add', exercise)
+    axios.post('http://localhost:8080/add', exercise)
     .then(res => console.log(res.data))
 
     window.location = '/'
